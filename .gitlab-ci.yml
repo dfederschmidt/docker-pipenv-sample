@@ -1,0 +1,5 @@
+build:
+  script:
+    - docker login -u dfederschmidt -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build -t registry.gitlab.com/dfederschmidt/docker-pipenv-sample .
+    - docker push registry.gitlab.com/dfederschmidt/docker-pipenv-sample
