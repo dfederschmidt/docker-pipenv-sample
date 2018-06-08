@@ -3,6 +3,7 @@ image: docker:latest
 stages:
   - build
   - test
+  - publish
 
 variables:
   IMAGE_NAME: docker-pipenv-sample:$CI_BUILD_REF_NAME
@@ -31,5 +32,6 @@ run_tests:
     - docker run -d -p 5000:5000 $IMAGE_NAME python test.py
 
 push_to_registy:
+  stage: publish
   script:
     - docker push $CONTAINER_TEST_IMAGE
