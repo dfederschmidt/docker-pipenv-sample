@@ -7,13 +7,9 @@ variables:
   CONTAINER_TEST_IMAGE: registry.gitlab.com/dfederschmidt/docker-pipenv-sample:$CI_BUILD_REF_NAME
 
 before_script:
-  - RUN apk add --update \
-      python \
-      python-dev \
-      py-pip \
-      build-base \
-    && pip install requests \
-    && rm -rf /var/cache/apk/*
+  - apt-get update -qy
+  - apt-get install -y python-dev python-pip
+  - pip install requests
 
 build:
   script:
@@ -24,3 +20,8 @@ build:
 test:
   script:
     - python test.py
+
+
+stages:
+  - build
+  - test
