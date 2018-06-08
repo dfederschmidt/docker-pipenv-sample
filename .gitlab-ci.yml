@@ -20,12 +20,14 @@ before_script:
 - apk add python python-dev py-pip build-base
 - pip install requests
 
-build:
+build_image:
+  stage: build
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker build -t  $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
 
-test:
+run_tests:
+  stage: test
   script:
     - docker run -d -p 5000:5000 $CONTAINER_TEST_IMAGE python test.py
