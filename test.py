@@ -6,7 +6,7 @@ class WebServerTests(unittest.TestCase):
     URL = "localhost"
 
     def test_webserver_accessible(self):
-        res = r.get("http://{}:5000".format(URL))
+        res = r.get("http://{}:5000".format(self.URL))
         self.assertTrue(res.text, "Hello World!")
 
 if __name__ == '__main__':
