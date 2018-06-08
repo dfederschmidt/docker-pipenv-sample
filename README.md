@@ -19,7 +19,6 @@ These instructions will get you a copy of the project up and running on your loc
 1. Get a local copy of the repository and navigate to the project directory.
 
 2. Inside the project directory, run the command below. This will build the image.
-
 ```
     docker build -t docker-pipenv-sample .
 ```
