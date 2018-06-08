@@ -5,7 +5,8 @@ stages:
   - test
 
 variables:
-  CONTAINER_TEST_IMAGE: registry.gitlab.com/dfederschmidt/docker-pipenv-sample:$CI_BUILD_REF_NAME
+  IMAGE_NAME: docker-pipenv-sample:$CI_BUILD_REF_NAME
+  CONTAINER_TEST_IMAGE: registry.gitlab.com/dfederschmidt/$IMAGE_NAME
   CONTAINER_SERVICE: sample
 
 services:
@@ -24,10 +25,13 @@ build_image:
   stage: build
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build -t  $CONTAINER_TEST_IMAGE .
-    - docker push $CONTAINER_TEST_IMAGE
+    - docker build -t  $IMAGE_NAME .
 
 run_tests:
   stage: test
   script:
-    - docker run -d -p 5000:5000 $CONTAINER_TEST_IMAGE python test.py
+    - docker run -d -p 5000:5000 $IMAGE_NAME python test.py
+
+push_to_registy:
+  script:
+    - docker push $CONTAINER_TEST_IMAGE
