@@ -3,8 +3,24 @@ image: docker:latest
 services:
 - docker:dind
 
+variables:
+  CONTAINER_TEST_IMAGE: registry.gitlab.com/dfederschmidt/docker-pipenv-sample:$CI_BUILD_REF_NAME
+
+before_script:
+  - RUN apk add --update \
+      python \
+      python-dev \
+      py-pip \
+      build-base \
+    && pip install requests \
+    && rm -rf /var/cache/apk/*
+
 build:
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build -t registry.gitlab.com/dfederschmidt/docker-pipenv-sample .
-    - docker push registry.gitlab.com/dfederschmidt/docker-pipenv-sample
+    - docker build -t  $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+
+test:
+  script:
+    - python test.py
