@@ -1,2 +1,1 @@
-
 Feel free to open [issues](https://gitlab.com/dfederschmidt/docker-pipenv-sample/issues) / [pull requests](https://gitlab.com/dfederschmidt/docker-pipenv-sample/merge_requests) on [Gitlab](https://gitlab.com/dfederschmidt/docker-pipenv-sample).
