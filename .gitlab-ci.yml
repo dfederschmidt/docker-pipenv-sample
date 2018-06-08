@@ -6,15 +6,17 @@ stages:
   - publish
 
 variables:
-  IMAGE_NAME: docker-pipenv-sample:$CI_BUILD_REF_NAME
-  CONTAINER_TEST_IMAGE: registry.gitlab.com/dfederschmidt/$IMAGE_NAME
-  CONTAINER_SERVICE: sample
+  IMAGE_NAME: docker-pipenv-sample
+  REGISTRY_IMAGE_NAME: registry.gitlab.com/dfederschmidt/$IMAGE_NAME
+  PIPELINE_IMAGE_NAME: $REGISTRY_IMAGE_NAME:$CI_BUILD_REF_NAME
+  RELEASE_IMAGE_NAME: $REGISTRY_IMAGE_NAME:latest
 
 services:
 - docker:dind
 
 before_script:
 - docker info
+- docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
 - apk update
 - apk upgrade
 - apk add python python-dev py-pip build-base
@@ -23,15 +25,20 @@ before_script:
 build_image:
   stage: build
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build -t  $IMAGE_NAME .
+    - docker build -t  $PIPELINE_IMAGE_NAME .
+    - docker push $PIPELINE_IMAGE_NAME
 
 run_tests:
   stage: test
   script:
-    - docker run -d -p 5000:5000 $IMAGE_NAME python test.py
+    - docker pull $PIPELINE_IMAGE_NAME
+    - docker run -d -p 5000:5000 $PIPELINE_IMAGE_NAME python test.py
 
 push_to_registy:
   stage: publish
+  only:
+    - master
   script:
-    - docker push $CONTAINER_TEST_IMAGE
+    - docker pull $PIPELINE_IMAGE_NAME
+    - docker tag $PIPELINE_IMAGE_NAME $RELEASE_IMAGE_NAME
+    - docker push $RELEASE_IMAGE_NAME
