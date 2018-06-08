@@ -4,7 +4,7 @@ stages:
   - build
   - test
 
-  variables:
+variables:
   CONTAINER_TEST_IMAGE: registry.gitlab.com/dfederschmidt/docker-pipenv-sample:$CI_BUILD_REF_NAME
   CONTAINER_SERVICE: sample
 
