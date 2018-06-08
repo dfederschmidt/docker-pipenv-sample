@@ -24,10 +24,7 @@ build:
 
 test:
   script:
-    - docker run -d -p 5000:5000 $CONTAINER_TEST_IMAGE
-    - sleep 5
-    - python test.py $CONTAINER_SERVICE
-
+    - docker run -d -p 5000:5000 $CONTAINER_TEST_IMAGE python test.py
 
 stages:
   - build
