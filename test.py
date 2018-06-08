@@ -1,5 +1,6 @@
 import unittest
 import requests as r
+import sys
 
 class WebServerTests(unittest.TestCase):
     URL = "localhost"
