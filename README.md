@@ -19,12 +19,12 @@ These instructions will get you a copy of the project up and running on your loc
 1. Get a local copy of the repository and navigate to the project directory.
 
 2. Inside the project directory, run the command below. This will build the image.
-```
+```bash
     docker build -t docker-pipenv-sample .
 ```
 
 3. Run a container based on the image.
-```
+```bash
     docker run -p 5000:5000 docker-pipenv-sample
 ```
 
@@ -36,7 +36,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 You can also get a pre-built image from the [Gitlab Container Registry](https://gitlab.com/dfederschmidt/docker-pipenv-sample/container_registry). But where is the fun in that?
 
-```
+```bash
 docker run -p 5000:5000 registry.gitlab.com/dfederschmidt/docker-pipenv-sample:latest
 ```
 
@@ -44,7 +44,8 @@ docker run -p 5000:5000 registry.gitlab.com/dfederschmidt/docker-pipenv-sample:l
 
 To run the test locally use the command below.
 
-```
+```bash
+pipenv install
 python tests.py 
 ```
 
