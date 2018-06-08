@@ -1,3 +1,5 @@
+image: docker:latest
+
 build:
   script:
     - docker login -u dfederschmidt -p $CI_BUILD_TOKEN registry.gitlab.com
