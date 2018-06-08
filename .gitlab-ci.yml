@@ -11,8 +11,6 @@ variables:
 
 services:
 - docker:dind
-- name: $CONTAINER_TEST_IMAGE
-  alias: $CONTAINER_SERVICE
 
 before_script:
 - docker info
