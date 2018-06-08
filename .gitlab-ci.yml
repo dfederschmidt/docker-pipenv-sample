@@ -6,10 +6,8 @@ stages:
   - publish
 
 variables:
-  IMAGE_NAME: docker-pipenv-sample
-  REGISTRY_IMAGE_NAME: registry.gitlab.com/dfederschmidt/$IMAGE_NAME
-  PIPELINE_IMAGE_NAME: $REGISTRY_IMAGE_NAME:$CI_BUILD_REF_NAME
-  RELEASE_IMAGE_NAME: $REGISTRY_IMAGE_NAME:latest
+  PIPELINE_IMAGE_NAME: registry.gitlab.com/dfederschmidt/docker-pipenv-sample:$CI_BUILD_REF_NAME
+  RELEASE_IMAGE_NAME: registry.gitlab.com/dfederschmidt/docker-pipenv-sample:latest
 
 services:
 - docker:dind
