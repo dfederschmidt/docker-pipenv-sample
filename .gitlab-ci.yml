@@ -21,7 +21,7 @@ build:
 
 test:
   script:
-    - docker run -p 5000:5000 $CONTAINER_TEST_IMAGE
+    - docker run -d -p 5000:5000 $CONTAINER_TEST_IMAGE
     - python test.py
 
 
