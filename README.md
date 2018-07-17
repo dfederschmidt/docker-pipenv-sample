@@ -8,6 +8,9 @@ This is a minimal example of using pipenv to install dependencies for a containe
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for fun.
+If you want to use pipenv to manage your Python dependencies in your project that should run in Docker
+you should start with inspecting the Dockerfile in this repository.
+
 
 ### Prerequisites
 
