@@ -2,9 +2,6 @@
 
 This is a minimal example of using pipenv to install dependencies for a containerized Python project.
 
-**If you're reading this on Github - the project is actively developed on [Gitlab](https://gitlab.com/dfederschmidt/docker-pipenv-sample) and only mirrored to Github. Please consider checking it out there instead.**
-
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for fun.
